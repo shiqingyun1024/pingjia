@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五角星效果练习</title>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            $(".comment")
+                    .css("list-style","none")
+                    .children("li")
+                    .css({
+                        "float":"left",
+                        "margin-left":"10px",
+                        "font-size":"25px"
+                    });
+            $(".comment li").mouseenter(function(){
+                $(this).stop().animate($(this).html("<li>★</li>").css("color","orange")
+                ,200);
+            }).mouseleave(function(){
+                $(this).stop().animate($(this).html("<li>☆</li>").css("color","black"),200);
+            });
+        });
+    </script>
+</head>
+<body>
+<ul class="comment">
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+</ul>
+</body>
+</html>

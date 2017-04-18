@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五角星练习新做法</title>
+    <style>
+        *{margin:0;padding:0;}
+        ul{
+            list-style-type: none;
+        }
+        .comment{
+            color: red;
+        }
+        .comment li{
+            float: left;
+            font-size: 40px;
+            cursor: pointer;
+
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function(){//因为刚接触，所以我对这写法还不是很熟悉
+            var wjx_sel = "★";//首先这个赋值，我就有点不是很适应，因为这是jQuery
+            var wjx_none = "☆";
+            $(".comment").on("mouseenter","li",function(){//第一步，首先是滑动的时候
+                $(this).text(wjx_sel)//text()是添加内容，还有html()，val()
+                        .prevAll()//前面所有的元素
+                        .text(wjx_sel)
+                        .end()//结束这一小段
+                        .nextAll()//后面所有的元素
+                        .text(wjx_none);
+            }).on("click","li",function(){//第二步，点击的时候
+                $(this)
+                        .addClass("clicked")//增加类样式
+                        .siblings()//所有的兄弟
+                        .removeClass("clicked");//移除类样式
+            }).on("mouseleave",function(){//第三步，离开的时候
+                $(".comment li").text(wjx_none);//先清空，再给单独的带有类样式clicked单独设置，思想和前面js做的案例差不多
+                $(".clicked")
+                        .text(wjx_sel)
+                        .prevAll()
+                        .text(wjx_sel)
+                        .end()
+                        .nextAll()
+                        .text(wjx_none);
+//                $(".clicked").text(wjx_sel).prevAll().text(wjx_sel).end()
+//                        .nextAll().text(wjx_none);
+            });
+        });
+    </script>
+</head>
+<body>
+<ul class="comment">
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+</ul>
+</body>
+</html>

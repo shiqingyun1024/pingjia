@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五角星练习2</title>
+    <style>
+        *{margin:0;padding:0;}
+        ul{
+            list-style: none;
+        }
+        .comment{
+            color: red;
+        }
+        .comment li{
+            float: left;
+            font-size: 45px;
+            cursor: pointer;}
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            var wjx_sel = "★";
+            var wjx_none = "☆";
+            $(".comment").on("mouseenter","li",function(){
+                $(this)
+                        .text(wjx_sel)
+                        .prevAll()
+                        .text(wjx_sel)
+                        .end()
+                        .nextAll()
+                        .text(wjx_none)
+            }).on("click","li",function(){
+                $(this)
+                        .addClass("clicked")
+                        .siblings()
+                        .removeClass("clicked")
+            }).on("mouseleave",function(){
+                $(".comment li").text(wjx_none);
+                $(".clicked")
+                        .text(wjx_sel)
+                        .prevAll()
+                        .text(wjx_sel)
+                        .end()
+                        .nextAll()
+                        .text(wjx_none)
+            });
+        });
+    </script>
+</head>
+<body>
+<ul class="comment">
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+</ul>
+</body>
+</html>
